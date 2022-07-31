@@ -13,12 +13,8 @@ def main():
     plt.rcParams['figure.figsize'] = (12, 6)
     sample = pd.read_csv("./resources/test.csv")
     user_sample = pd.read_csv('./resources/user.csv')
-    plotStarOccurrence(sample)
-    plotReviewCountStars(sample)
-    plotAttributeCount(sample)
-    plotUser(user_sample)
+
     pca(sample)
-    pcaUser(user_sample)
     
 def plotStarOccurrence(sample):
     all_stars = sample['stars']
@@ -102,7 +98,7 @@ def countAttrs(attrs):
         if isfloat(attrs):
             return 0
         else:
-            return attrs.count("True")
+            return attrs.count("True") - attrs.count("False")
 # PCA 
 def pca(sample):
     all_attributes = sample['attributes']
@@ -121,6 +117,7 @@ def pca(sample):
     pcaDF = sample[['stars', 'is_open', 'review_count']]
     pcaDF['weekly_hours'] = sample['hours'].apply(lambda x: parsehours(x))
     pcaDF['attribute_count'] = sample['attributes'].apply(lambda x: countAttrs(x))
+    print(pcaDF['attribute_count'])
     pcaDF.index = all_names
     pcaData = pcaDF
     scaled_data = StandardScaler().fit_transform(pcaDF.T)
