@@ -15,11 +15,6 @@ from sklearn.model_selection import train_test_split
 def main():
     df = pd.read_csv("./resources/test.csv")
     df3 = pd.read_json("./resources/yelp_academic_dataset_business.json", lines=True)
-    df3 = df3[df3['business_id'].isin(df['business_id'])]
-    print(df3['hours'])
-    df3['hours'] = df['hours']
-    df3.reset_index(inplace=True)
-    findFreqItemSets(df3)
 def support(data, item):
     i = 0
 def confidence(data, item):
@@ -68,7 +63,7 @@ def checkTakeOut(x):
         return True
     else:
         return False
-def findFreqItemSets(data):
+def preprocessData(data):
     data['attributes'].dropna()
     print(data['attributes'])
     print(data['hours'])
