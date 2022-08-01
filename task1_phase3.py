@@ -18,10 +18,10 @@ def main():
     df = preprocessData(df)
     df.to_json("./resources/processed.json")
     df1 = pd.read_json("./resources/processed.json")
-    df1.to_csv("./resources/processed.csv")
+    df1.to_csv("./resources/216480444-216482440-218407734-T1Disc2.csv.csv")
     convertToMarketBasket(df1)
 def convertToMarketBasket(data):
-    file = open("./resources/216480444-.csv", "w")
+    file = open("./resources/216480444-216482440-218407734-T1Disc.csv.csv", "w")
     writer = csv.writer(file)
     for index, row in data.iterrows():
         rowOut = []
